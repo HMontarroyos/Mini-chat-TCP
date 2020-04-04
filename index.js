@@ -2,9 +2,13 @@
 net = require('net');
 const { exec } = require('child_process');
 
+var colors = require('colors');
+colors.enable () ;
+
 
 // Keep track of the chat clients
 var clients = [];
+var Salas = ['Salas'];
 
 // Start a TCP Server
 net.createServer(function (socket) {
@@ -20,7 +24,12 @@ net.createServer(function (socket) {
       var data = buffer.toString()
       if(data.startsWith("name:")){
           console.log("kkkkkk", data)
-          socket.name = data.split(':')[1].replace('\\r\\n','')
+          socket.name = data.split(':')[1].replace('\\r\\n','');
+          socket.nomeDaSala = data.split(':')[2].replace('\\r\\n','');
+          
+
+
+
           socket.write("olá, pode chatear agora " + socket.name + "\n");
             // Send a nice welcome message and announce
             broadcast(socket.name + " começou a chatear\n", socket);
@@ -58,4 +67,4 @@ net.createServer(function (socket) {
 }).listen(5000);
 
 // Put a friendly message on the terminal of the server.
-console.log("Chat server na porta 5000\n");
+console.log(colors.green("Chat server na porta 5000\n"));
