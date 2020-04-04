@@ -1,6 +1,10 @@
 var figlet = require('figlet');
 var colors = require('colors');
 colors.enable () ;
+
+const chalk = require('chalk');
+ 
+console.log(chalk.bgYellow('Hello world!'));
  
 figlet('Seja Bem Vindo ao nosso Chat !!!', function(err, data) {
     if (err) {
@@ -10,3 +14,4 @@ figlet('Seja Bem Vindo ao nosso Chat !!!', function(err, data) {
     }
     console.log(data)
 });
+

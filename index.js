@@ -38,21 +38,12 @@ net.createServer(function (socket) {
           socket.name = data.split(':')[1].replace('\\r\\n','');
           socket.nomeDaSala = data.split(':')[2].replace('\\r\\n','');
           Salas.push(socket.nomeDaSala)
-          socket.write(colors.rainbow("Olá, pode chatear agora " + socket.name + "\n" + "Você se logou na sala: " + colors.cyan(socket.nomeDaSala)+colors.yellow("\n\n\n Regras:\n\n\n")+
-          colors.rainbow("")));
-
-
-
-
-
-
-
-
-
-
-
+          socket.write(colors.rainbow("Olá, pode chatear agora ")) + socket.name + "\n" + (colors.rainbow("Você se logou na sala: ")) + (colors.cyan(socket.nomeDaSala))+colors.yellow("\n\n\n LISTA DE COMANDOS\n\n\n")+
+          colors.white("salas")+ "= Listara todas as Salas Criadas\n"+colors.white("mudar:'NomeDaSala")+ "= Ira alterar e selecionar a proxima sala em questão ou no caso " +
+          "ira criar uma nova Sala caso não exista a sala digitada\n\n"+ colors.white("sair")+ colors.red("VOCÊ SERA DESCONECTADO DO CHAT\n");
+      
             // Send a nice welcome message and announce
-          broadcast(socket.name + " começou a chatear\n", socket);
+          broadcast((colors.green(socket.name) + "Entrou na Sala Principal\n", socket.name, socket.nomeDaSala));
 
 
 
