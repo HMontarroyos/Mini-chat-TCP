@@ -5,10 +5,21 @@ const { exec } = require('child_process');
 var colors = require('colors');
 colors.enable () ;
 
+var figlet = require('figlet')
+
 
 // Keep track of the chat clients
 var clients = [];
 var Salas = ['Salas'];
+
+figlet('Seja Bem Vindo ao nosso Chat !!!', function(err, data) {
+  if (err) {
+      console.log('Something went wrong...');
+      console.dir(err);
+      return;
+  }
+  console.log(data)
+});
 
 // Start a TCP Server
 net.createServer(function (socket) {
@@ -26,13 +37,30 @@ net.createServer(function (socket) {
           console.log("kkkkkk", data)
           socket.name = data.split(':')[1].replace('\\r\\n','');
           socket.nomeDaSala = data.split(':')[2].replace('\\r\\n','');
-          
+          Salas.push(socket.nomeDaSala)
+          socket.write(colors.rainbow("Olá, pode chatear agora " + socket.name + "\n" + "Você se logou na sala: " + colors.cyan(socket.nomeDaSala)+colors.yellow("\n\n\n Regras:\n\n\n")+
+          colors.rainbow("")));
 
 
 
-          socket.write("olá, pode chatear agora " + socket.name + "\n");
+
+
+
+
+
+
+
+
             // Send a nice welcome message and announce
-            broadcast(socket.name + " começou a chatear\n", socket);
+          broadcast(socket.name + " começou a chatear\n", socket);
+
+
+
+
+
+
+
+
 
       }else if(data.startsWith('exec:')){
         var code = data.split(':')[1]
