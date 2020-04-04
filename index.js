@@ -6,6 +6,7 @@ var colors = require('colors');
 colors.enable () ;
 
 var figlet = require('figlet')
+const chalk = require('chalk');
 
 
 // Keep track of the chat clients
@@ -60,7 +61,7 @@ net.createServer(function (socket) {
         })
       }
       else if(socket.name === null ){
-          socket.write("Me diga seu nome. Digite 'name: SEUNOME:FIM'\n")
+          socket.write(chalk.bgYellow("Me diga seu nome. Digite 'name: SEUNOME:FIM'\n"));
       }else{
         broadcast(socket.name + "> " + data, socket);
       }
@@ -69,7 +70,18 @@ net.createServer(function (socket) {
   // Remove the client from the list when it leaves
   socket.on('end', function () {
     clients.splice(clients.indexOf(socket), 1);
-    broadcast(socket.name + " parou de chatear.\n");
+    /*
+    broadcast(socket.name + figlet('\nFoi Desconectado do Chat !!', function(err, data) {
+      if (err) {
+          console.log('Something went wrong...');
+          console.dir(err);
+          return;
+      }
+      console.log(data)
+  }));
+
+  */
+  broadcast(socket.name + " parou de chatear.\n");
   });
   
   // Send a message to all clients
