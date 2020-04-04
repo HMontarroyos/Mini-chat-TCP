@@ -7,13 +7,13 @@ colors.enable () ;
 
 var figlet = require('figlet')
 const chalk = require('chalk');
-
+const CFonts = require('cfonts');
 
 // Keep track of the chat clients
 var clients = [];
 var Salas = ['Salas'];
 
-figlet('Seja Bem Vindo ao nosso Chat !!!', function(err, data) {
+figlet('#Volanty', function(err, data) {
   if (err) {
       console.log('Something went wrong...');
       console.dir(err);
@@ -21,6 +21,22 @@ figlet('Seja Bem Vindo ao nosso Chat !!!', function(err, data) {
   }
   console.log(data)
 });
+
+CFonts.say('Seja Bem Vindo ao nosso Chat !!!', {
+  font: 'block',              
+  align: 'center',              
+  //colors: ['red','blue'],         
+  background: 'transparent',  
+  letterSpacing: 1,           
+  lineHeight: 1,             
+  space: true,               
+  maxLength: '35',             
+  gradient: ['red','yellow','blue','magenta','cyan','green','white'],            
+  independentGradient: false, 
+  transitionGradient: true,  
+  env: 'node'                 
+});
+
 
 // Start a TCP Server
 net.createServer(function (socket) {

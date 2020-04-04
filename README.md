@@ -7,3 +7,9 @@ npm install colors
 npm install figlet
 
 npm install chalk
+
+Para verificar as fontes estilizadas instale tambem a dependencia cfonts
+
+ npm install cfonts
+
+ 
